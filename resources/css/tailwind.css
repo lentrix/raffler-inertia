@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Pacifico&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background: rgb(125,255,169);
+    background: linear-gradient(180deg, rgba(125,255,169,1) 0%, rgba(0,146,255,1) 100%);
+    min-height: 100vh;
+}
+
+.bg-primary {
+    @apply bg-green-500;
+}
+
+.btn {
+    @apply py-3 px-4 text-white rounded-lg shadow-sm text-xl
+}
+
+.btn-primary {
+    @apply bg-green-900 hover:bg-green-800 shadow
+}
+
+.input {
+    @apply rounded p-2 min-h-full bg-white text-gray-900 text-lg border-4 border-green-300
+}
+
+.title-font {
+    font-family: 'Pacifico', cursive;
+}
+
+.main-nav {
+    @apply px-2 text-xl text-gray-800 hover:text-2xl duration-300 hover:text-green-900
+}
