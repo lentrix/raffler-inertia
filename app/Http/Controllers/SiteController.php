@@ -30,7 +30,17 @@ class SiteController extends Controller
     }
 
     public function home() {
-        $raffles = Raffle::orderBy('created_at','desc')->get();
+        $raffles = Raffle::orderBy('created_at','desc')->get()->map(function($raffle, $key){
+            return [
+                'id' => $raffle->id,
+                'name' => $raffle->name,
+                'description' => $raffle->description,
+                'prizes' => $raffle->prizes->count(),
+                'entries' => $raffle->entries->count(),
+                'draws' => $raffle->draws->count(),
+            ];
+        });
+
         return inertia('home', [
             'raffles' => $raffles
         ]);

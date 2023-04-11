@@ -25,4 +25,13 @@ class RaffleController extends Controller
 
         return redirect('/home')->with('Message','New raffle has been created.');
     }
+
+    public function show(Raffle $raffle) {
+        return inertia('raffles.show',[
+            'raffle' => $raffle,
+            'prizes' => $raffle->prizes,
+            'entries' => $raffle->entries,
+            'draws' => $raffle->draws
+        ]);
+    }
 }

@@ -6,7 +6,7 @@
 </script>
 
 <template>
-    <div class="max-w-[1080px] lg:mx-auto mx-4 min-w-[480px]">
+    <div class="max-w-[1280px] xl:mx-auto mx-4 min-w-[480px]">
         <NavBar />
 	    <slot />
     </div>
