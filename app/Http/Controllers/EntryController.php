@@ -35,4 +35,25 @@ class EntryController extends Controller
         $entry->delete();
         return back();
     }
+
+    public function importEntries(Raffle $raffle, Request $request) {
+        $file = $request->file('source_list');
+        $handle = fopen($file->getRealPath(),'r');
+
+        while(($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            if(!is_numeric($row[0])) return back()->withErrors('upload_error','Invalid File format! It should be [Ticket No., Name, Description]');
+
+            Entry::create([
+                'raffle_id' => $raffle->id,
+                'ticket_no' => $row[0],
+                'name' => $row[1],
+                'description' => $row[2]
+            ]);
+        }
+
+        fclose($handle);
+
+        return back();
+
+    }
 }

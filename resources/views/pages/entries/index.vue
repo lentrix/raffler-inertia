@@ -11,9 +11,19 @@ let form = useForm({
     description: ''
 })
 
+let form2 = useForm({
+    'source_list': null
+})
+
 function addOne(id) {
     form.post('/raffles/' + id + '/entries')
     clearForm()
+}
+
+function addFile(id) {
+    form2.post('/raffles/' + id + "/import-entries",{
+        forceFormData: true
+    })
 }
 
 function clearForm() {
@@ -58,6 +68,22 @@ function clearForm() {
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">
                     <i class="fa fa-save"></i> Save Prize
+                </button>
+            </form>
+
+        </div>
+
+        <div class="flex flex-col bg-green-200 p-4 rounded-lg shadow mb-4 overflow-hidden">
+            <h4 class="text-xl">Import Raffle Entries</h4>
+            <hr class="border-green-700 mb-4">
+            <form @submit.prevent="addFile(raffle.id)">
+                <input type="file" @input="form2.source_list = $event.target.files[0]" accept=".csv" />
+                <progress v-if="form.progress" :value="form.progress.percentage" max="100">
+                {{ form.progress.percentage }}%
+                </progress>
+
+                <button class="btn btn-primary mt-3" type="submit">
+                    <i class="fa-solid fa-file-arrow-down"></i> Import File
                 </button>
             </form>
         </div>

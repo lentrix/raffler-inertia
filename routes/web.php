@@ -30,6 +30,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::post('/raffles/{raffle}/prizes',[PrizeController::class, 'store']);
     Route::get('/raffles/{raffle}/entries',[EntryController::class, 'index']);
     Route::post('/raffles/{raffle}/entries',[EntryController::class, 'store']);
+    Route::post('/raffles/{raffle}/import-entries',[EntryController::class, 'importEntries']);
 
 
     Route::delete('/prizes/{prize}', [PrizeController::class, 'destroy']);
