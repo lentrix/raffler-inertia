@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->id();
             $table->bigInteger("raffle_id")->unsigned();
-            $table->integer('ticket_no')->unique()->unsigned();
+            $table->integer('ticket_no')->unique()->unsigned()->nullable();
             $table->string("name");
             $table->string("description");
             $table->timestamps();

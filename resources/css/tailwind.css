@@ -59,3 +59,7 @@ body {
 .list-item {
     @apply p-2 bg-white rounded shadow mb-2
 }
+
+.small-box {
+    @apply text-sm p-1 bg-green-100 rounded border border-green-400
+}

@@ -18,7 +18,7 @@ class Raffle extends Model
     }
 
     public function entries() {
-        return $this->hasMany('App\Models\Entry');
+        return $this->hasMany('App\Models\Entry')->orderBy('name');
     }
 
     public function getDrawsAttribute() {

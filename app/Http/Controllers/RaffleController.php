@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entry;
 use App\Models\Raffle;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class RaffleController extends Controller
         return inertia('raffles.show',[
             'raffle' => $raffle,
             'prizes' => $raffle->prizes,
-            'entries' => $raffle->entries,
+            'entries' => Entry::where('raffle_id', $raffle->id)->limit(50)->get(),
             'draws' => $raffle->draws
         ]);
     }

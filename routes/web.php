@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EntryController;
 use App\Http\Controllers\PrizeController;
 use App\Http\Controllers\RaffleController;
 use App\Http\Controllers\SiteController;
@@ -27,8 +28,13 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/raffles/{raffle}', [RaffleController::class, 'show']);
     Route::get('/raffles/{raffle}/add-prizes',[PrizeController::class, 'create']);
     Route::post('/raffles/{raffle}/prizes',[PrizeController::class, 'store']);
+    Route::get('/raffles/{raffle}/entries',[EntryController::class, 'index']);
+    Route::post('/raffles/{raffle}/entries',[EntryController::class, 'store']);
+
 
     Route::delete('/prizes/{prize}', [PrizeController::class, 'destroy']);
+
+    Route::delete('/entries/{entry}',[EntryController::class, 'destroy']);
 
     Route::post('/logout',[SiteController::class,'logout']);
 });

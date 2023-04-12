@@ -53,9 +53,15 @@ defineProps({
     <div class="w-1/3 p-4 rounded-lg shadow bg-green-200">
         <div class="flex justify-between">
             <h3 class="text-2xl">Raffle Entries</h3>
-            <Link :href="'/raffles/' + raffle.id + '/add-entries'" class="bg-green-300 px-3 py-2 rounded-lg border border-green-400 hover:bg-green-500">
-                <i class="fa fa-plus"></i>
+            <Link :href="'/raffles/' + raffle.id + '/entries'" class="bg-green-300 px-3 py-2 rounded-lg border border-green-400 hover:bg-green-500">
+                <i class="fa-solid fa-right-to-bracket"></i>
             </Link>
+        </div>
+        <div class="flex space-x-1 space-y-1 mb-1 flex-wrap">
+            <div></div>
+            <div v-for="entry in entries" :key="entry.id" class="small-box">
+                {{ entry.name }}
+            </div>
         </div>
     </div>
 
