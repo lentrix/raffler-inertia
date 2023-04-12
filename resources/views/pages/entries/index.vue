@@ -86,6 +86,7 @@ function clearForm() {
                     <i class="fa-solid fa-file-arrow-down"></i> Import File
                 </button>
             </form>
+            <div>CSV Format: <br />Ticket No., Name, Description</div>
         </div>
 
     </div>
