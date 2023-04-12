@@ -31,6 +31,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/raffles/{raffle}/entries',[EntryController::class, 'index']);
     Route::post('/raffles/{raffle}/entries',[EntryController::class, 'store']);
     Route::post('/raffles/{raffle}/import-entries',[EntryController::class, 'importEntries']);
+    Route::get('/raffles/draw/{raffle}',[RaffleController::class, 'drawPage']);
+    Route::post('/raffles/draw/{raffle}',[RaffleController::class, 'draw']);
 
 
     Route::delete('/prizes/{prize}', [PrizeController::class, 'destroy']);

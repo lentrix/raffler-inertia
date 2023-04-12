@@ -63,3 +63,9 @@ body {
 .small-box {
     @apply text-sm p-1 bg-green-100 rounded border border-green-400
 }
+
+.bg-confetti {
+    background-color: rgb(202, 243, 202);
+    background-image: url('../images/icegif-310.gif');
+    background-size: 100%;
+}

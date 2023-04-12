@@ -25,6 +25,11 @@ class Raffle extends Model
         $raffleId = $this->id;
         return Draw::whereHas('prize', function($q) use ($raffleId) {
             $q->where('raffle_id', $raffleId);
-        })->get();
+        })->with('entry')->with('prize')->get();
+    }
+
+    public function getNonWinnersAttribute() {
+        $entries = Entry::whereDoesntHave('draws')->get();
+        return $entries;
     }
 }
