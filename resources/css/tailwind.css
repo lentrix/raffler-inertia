@@ -37,3 +37,25 @@ body {
 .main-nav {
     @apply px-2 text-xl text-gray-800 hover:text-2xl duration-300 hover:text-green-900
 }
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table th,
+.table td {
+    @apply border border-green-700 p-1
+}
+
+.table tr th {
+    @apply bg-green-800 text-white
+}
+
+.table tr td {
+    @apply bg-green-200
+}
+
+.list-item {
+    @apply p-2 bg-white rounded shadow mb-2
+}

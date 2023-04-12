@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PrizeController;
 use App\Http\Controllers\RaffleController;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/raffles/create', [RaffleController::class, 'create']);
     Route::post('/raffles', [RaffleController::class, 'store']);
     Route::get('/raffles/{raffle}', [RaffleController::class, 'show']);
+    Route::get('/raffles/{raffle}/add-prizes',[PrizeController::class, 'create']);
+    Route::post('/raffles/{raffle}/prizes',[PrizeController::class, 'store']);
 
     Route::post('/logout',[SiteController::class,'logout']);
 });

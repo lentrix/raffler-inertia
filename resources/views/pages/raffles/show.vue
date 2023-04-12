@@ -34,11 +34,29 @@ defineProps({
             <i class="fa-solid fa-check-double"></i> Draw Now
         </Link>
     </div>
-    <div class="w-1/3">
-        <h3 class="text-2xl">Raffle Prizes</h3>
+    <div class="w-1/3 p-4 rounded-lg shadow bg-green-200">
+        <div class="flex justify-between">
+            <h3 class="text-2xl">Raffle Prizes</h3>
+            <Link :href="'/raffles/' + raffle.id + '/add-prizes'" class="bg-green-300 px-3 py-2 rounded-lg border border-green-400 hover:bg-green-500">
+                <i class="fa fa-plus"></i>
+            </Link>
+        </div>
+        <ul class="mt-3">
+            <li v-for="prize in prizes" class="list-item">
+                {{ prize.name }}
+                <span v-if="prize.sponsor" class="italic text-green-600">
+                    from {{ prize.sponsor }}
+                </span>
+            </li>
+        </ul>
     </div>
-    <div class="w-1/3">
-        <h3 class="text-2xl">Raffle Entries</h3>
+    <div class="w-1/3 p-4 rounded-lg shadow bg-green-200">
+        <div class="flex justify-between">
+            <h3 class="text-2xl">Raffle Entries</h3>
+            <Link :href="'/raffles/' + raffle.id + '/add-entries'" class="bg-green-300 px-3 py-2 rounded-lg border border-green-400 hover:bg-green-500">
+                <i class="fa fa-plus"></i>
+            </Link>
+        </div>
     </div>
 
 </div>
