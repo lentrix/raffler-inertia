@@ -28,5 +28,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('/raffles/{raffle}/add-prizes',[PrizeController::class, 'create']);
     Route::post('/raffles/{raffle}/prizes',[PrizeController::class, 'store']);
 
+    Route::delete('/prizes/{prize}', [PrizeController::class, 'destroy']);
+
     Route::post('/logout',[SiteController::class,'logout']);
 });

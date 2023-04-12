@@ -29,12 +29,10 @@ function clearForm() {
 
 <div class="flex space-x-4">
 
-    <div class="w-1/3">
+    <div class="w-1/4">
         <div class="flex flex-col bg-green-200 p-4 rounded-lg shadow mb-4">
             <h3 class="text-2xl">{{ raffle.name }}</h3>
             <p class="text-gray-700 italic text-sm">{{ raffle.description }}</p>
-
-
 
             <Link :href="'/raffles/' + raffle.id" class="min-w-full bg-green-800 p-2 text-center mt-8 rounded-lg text-white text-2xl hover:bg-green-700 hover:shadow-md duration-200">
                 <i class="fa-solid fa-left-long"></i> Back
@@ -66,7 +64,7 @@ function clearForm() {
 
     </div>
 
-    <div class="w-2/3">
+    <div class="w-3/4">
         <h2 class="text-4xl">Raffle Prizes</h2>
         <hr class="border-green-700">
         <table class="mt-3 table" v-if="raffle.prizes.length > 0">
@@ -74,11 +72,19 @@ function clearForm() {
                 <th>Item</th>
                 <th>Description</th>
                 <th>Sponsor</th>
+                <th>
+                    <i class="fa fa-trash"></i>
+                </th>
             </tr>
             <tr v-for="prize in raffle.prizes" :key="prize.id">
                 <td>{{ prize.name }}</td>
                 <td>{{ prize.description }}</td>
                 <td>{{ prize.sponsor }}</td>
+                <td class="text-center">
+                    <Link :href="'/prizes/' + prize.id" method="delete" title="Delete item">
+                        <i class="fa fa-trash text-red-700"></i>
+                    </Link>
+                </td>
             </tr>
         </table>
         <div v-if="raffle.prizes.length==0" class="mt-3 text-gray-600 italic">There are no raffle prizes yet.</div>

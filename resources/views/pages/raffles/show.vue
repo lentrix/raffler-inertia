@@ -38,7 +38,7 @@ defineProps({
         <div class="flex justify-between">
             <h3 class="text-2xl">Raffle Prizes</h3>
             <Link :href="'/raffles/' + raffle.id + '/add-prizes'" class="bg-green-300 px-3 py-2 rounded-lg border border-green-400 hover:bg-green-500">
-                <i class="fa fa-plus"></i>
+                <i class="fa-solid fa-right-to-bracket"></i>
             </Link>
         </div>
         <ul class="mt-3">

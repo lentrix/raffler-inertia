@@ -29,4 +29,9 @@ class PrizeController extends Controller
 
         return redirect("/raffles/$raffle->id/add-prizes");
     }
+
+    public function destroy(Prize $prize) {
+        $prize->delete();
+        return back();
+    }
 }
