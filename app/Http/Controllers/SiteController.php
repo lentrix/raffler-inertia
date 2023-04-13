@@ -30,7 +30,7 @@ class SiteController extends Controller
     }
 
     public function home() {
-        $raffles = Raffle::orderBy('created_at','desc')->get()->map(function($raffle, $key){
+        $raffles = Raffle::where('user_id',auth()->user()->id)->orderBy('created_at','desc')->get()->map(function($raffle, $key){
             return [
                 'id' => $raffle->id,
                 'name' => $raffle->name,

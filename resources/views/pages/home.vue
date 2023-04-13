@@ -2,7 +2,7 @@
 import { Link } from '@inertiajs/inertia-vue3';
 
 defineProps({
-    raffles: Array
+    raffles: Array,
 })
 
 </script>
