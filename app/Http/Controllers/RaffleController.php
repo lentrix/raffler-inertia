@@ -32,10 +32,14 @@ class RaffleController extends Controller
 
     public function show(Raffle $raffle)
     {
+        $entries = Entry::where('raffle_id', $raffle->id);
+        $entries_count = $entries->count();
+
         return inertia('raffles.show', [
             'raffle' => $raffle,
             'prizes' => $raffle->prizes,
-            'entries' => Entry::where('raffle_id', $raffle->id)->limit(50)->get(),
+            'entries_count' => $entries_count,
+            'entries' => $entries->limit(30)->get(),
             'draws' => $raffle->draws
         ]);
     }

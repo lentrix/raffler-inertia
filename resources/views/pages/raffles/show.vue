@@ -6,6 +6,7 @@ defineProps({
     raffle: Object,
     prizes: Array,
     entries: Array,
+    entries_count: 0,
     draws: Array
 })
 
@@ -21,7 +22,7 @@ defineProps({
         <p class="text-gray-700 italic text-sm">{{ raffle.description }}</p>
 
         <div class="bg-gray-800 rounded text-white p-2 mt-2">
-            Number of Entries: {{ entries.length }}
+            Number of Entries: {{ entries_count }}
         </div>
         <div class="bg-gray-700 rounded text-white p-2 mt-2">
             Number of Prizes: {{ prizes.length }}
