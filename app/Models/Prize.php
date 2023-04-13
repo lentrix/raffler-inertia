@@ -11,4 +11,8 @@ class Prize extends Model
     public function raffle() {
         return $this->belongsTo('App\Models\Raffle');
     }
+
+    public function draws() {
+        return $this->hasMany('App\Models\Draw');
+    }
 }

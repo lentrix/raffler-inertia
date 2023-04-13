@@ -26,9 +26,9 @@ defineProps({
         <div class="bg-gray-700 rounded text-white p-2 mt-2">
             Number of Prizes: {{ prizes.length }}
         </div>
-        <div class="bg-gray-600 rounded text-white p-2 mt-2">
+        <Link :href="'/raffles/draws/' + raffle.id" class="bg-gray-600 rounded text-white p-2 mt-2 cursor-pointer hover:bg-gray-200 hover:text-black">
             Prizes drawn: {{ draws.length }}
-        </div>
+        </Link>
 
         <Link :href="'/raffles/draw/' + raffle.id" class="min-w-full bg-green-800 p-3 text-center mt-8 rounded-lg text-white text-2xl hover:bg-green-700 hover:shadow-md duration-200">
             <i class="fa-solid fa-check-double"></i> Draw Now

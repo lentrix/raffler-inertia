@@ -62,4 +62,22 @@ class RaffleController extends Controller
 
         return back();
     }
+
+    public function drawList(Raffle $raffle) {
+        return inertia('raffles.draws-list',[
+            'raffle' => $raffle,
+            'draws' => $raffle->draws
+        ]);
+    }
+
+    public function edit(Raffle $raffle) {
+        return inertia('raffles.edit',[
+            'raffle'=>$raffle
+        ]);
+    }
+
+    public function update(Raffle $raffle, Request $request) {
+        $raffle->update($request->all());
+        return redirect('/home');
+    }
 }

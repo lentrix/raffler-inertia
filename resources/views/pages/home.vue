@@ -33,9 +33,9 @@ defineProps({
                         <i class="fa-solid fa-pen-to-square"></i>
                     </Link>
                 </div>
-                <Link :href="'/raffles/delete/' + raffle.id" class="border border-red-500 text-red-500 p-2 rounded" title="Delete Raffle">
+                <!-- <Link :href="'/raffles/delete/' + raffle.id" class="border border-red-500 text-red-500 p-2 rounded" title="Delete Raffle">
                     <i class="fa-solid fa-trash-can"></i>
-                </Link>
+                </Link> -->
             </div>
         </div>
 

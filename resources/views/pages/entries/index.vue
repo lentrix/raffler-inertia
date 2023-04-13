@@ -2,7 +2,8 @@
 import { Link, useForm } from '@inertiajs/inertia-vue3';
 
 defineProps({
-    raffle: Object
+    raffle: Object,
+    entries: Object,
 })
 
 let form = useForm({
@@ -30,6 +31,14 @@ function clearForm() {
     form.ticket_no = ''
     form.name = ''
     form.description = ''
+}
+
+let searchForm = useForm({
+    filter:''
+})
+
+function filter(raffle) {
+    searchForm.get('/raffles/' + raffle.id + '/entries')
 }
 
 </script>
@@ -78,6 +87,7 @@ function clearForm() {
             <hr class="border-green-700 mb-4">
             <form @submit.prevent="addFile(raffle.id)">
                 <input type="file" @input="form2.source_list = $event.target.files[0]" accept=".csv" />
+                <div class="text-red-600 text-sm italic" v-if="form2.errors.source_list">{{ form2.errors.source_list }}</div>
                 <progress v-if="form.progress" :value="form.progress.percentage" max="100">
                 {{ form.progress.percentage }}%
                 </progress>
@@ -91,7 +101,17 @@ function clearForm() {
 
     </div>
     <div class="w-3/4">
-        <h2 class="text-4xl">Raffle Entries</h2>
+        <div class="flex justify-between">
+            <h1 class="text-4xl">Raffle Entries</h1>
+            <div class="w-3/4 flex justify-end">
+                <form @submit.prevent="filter(raffle)">
+                    <input type="text" class="w-[300px] p-1 border-2 border-green-300 rounded" v-model="searchForm.filter">
+                    <button class="py-1 px-2 text-white rounded-md bg-green-800 hover:bg-green-700">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
         <hr class="border-green-700">
         <table class="table mt-4">
             <tr>
@@ -102,7 +122,7 @@ function clearForm() {
                     <i class="fa fa-trash"></i>
                 </th>
             </tr>
-            <tr v-for="entry in raffle.entries" :key="entry.id">
+            <tr v-for="entry in entries.data" :key="entry.id">
                 <td>{{ entry.ticket_no }}</td>
                 <td>{{ entry.name }}</td>
                 <td>{{ entry.description }}</td>
@@ -113,6 +133,9 @@ function clearForm() {
                 </td>
             </tr>
         </table>
+        <div class="flex space-x-1 justify-center mt-2">
+            <Link :href="link.url" v-for="link in entries.links" v-html="link.label" class="page-btn" :class="{pageactive: link.active}"></Link>
+        </div>
     </div>
 </div>
 
