@@ -36,6 +36,7 @@ Route::group(['middleware'=>'auth'], function(){
         Route::post('/raffles/{raffle}/entries',[EntryController::class, 'store']);
         Route::post('/raffles/{raffle}/import-entries',[EntryController::class, 'importEntries']);
         Route::get('/raffles/draw/{raffle}',[RaffleController::class, 'drawPage']);
+        Route::get('/raffles/draws/{raffle}',[RaffleController::class, 'drawList']);
         Route::post('/raffles/draw/{raffle}',[RaffleController::class, 'draw']);
         Route::get('/raffles/edit/{raffle}',[RaffleController::class,'edit']);
         Route::put('/raffles/{raffle}',[RaffleController::class,'update']);

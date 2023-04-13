@@ -31,6 +31,9 @@ class PrizeController extends Controller
     }
 
     public function destroy(Prize $prize) {
+        if(count($prize->draws)>0) {
+            return back()->withErrors(['GeneralErrors'=>'This prize cannot be deleted because there are drawn winners.']);
+        }
         $prize->delete();
         return back();
     }

@@ -8,10 +8,17 @@ use Illuminate\Http\Request;
 
 class EntryController extends Controller
 {
-    public function index(Raffle $raffle) {
-        $raffle->load('entries');
+    public function index(Raffle $raffle, Request $request) {
+        $entries = Entry::where('raffle_id', $raffle->id);
+
+        if($request->filter) {
+            $entries->where('name','like',"%$request->filter%")
+                ->orWhere('description','like',"%$request->filter%");
+        }
+
         return inertia('entries.index', [
-            'raffle' => $raffle
+            'raffle' => $raffle,
+            'entries' => $entries->paginate(22)
         ]);
     }
 
@@ -37,11 +44,16 @@ class EntryController extends Controller
     }
 
     public function importEntries(Raffle $raffle, Request $request) {
+
+        $request->validate([
+            'source_list' => 'required|file'
+        ]);
+
         $file = $request->file('source_list');
         $handle = fopen($file->getRealPath(),'r');
 
         while(($row = fgetcsv($handle, 1000, ",")) !== FALSE) {
-            if(!is_numeric($row[0])) return back()->withErrors('upload_error','Invalid File format! It should be [Ticket No., Name, Description]');
+            if(!is_numeric($row[0])) return back()->withErrors(['GeneralErrors'=>'Invalid File format! It should be [Ticket No., Name, Description]']);
 
             Entry::create([
                 'raffle_id' => $raffle->id,
