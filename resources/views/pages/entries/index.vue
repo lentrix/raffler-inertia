@@ -76,7 +76,7 @@ function filter(raffle) {
                     <div class="italic text-sm text-red-600" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">
-                    <i class="fa fa-save"></i> Save Prize
+                    <i class="fa fa-save"></i> Save Entry
                 </button>
             </form>
 

@@ -29,7 +29,9 @@ class Raffle extends Model
     }
 
     public function getNonWinnersAttribute() {
-        $entries = Entry::whereDoesntHave('draws')->get();
+        $entries = Entry::whereDoesntHave('draws')
+                ->where('raffle_id', $this->id)
+                ->get();
         return $entries;
     }
 }
